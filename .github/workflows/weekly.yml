@@ -2,6 +2,7 @@ name: Weekly build
 on:
   schedule:
     - cron: "40 13 * * 2,3,5"   # after the PL X-ray build on Tuesday, Wednesday and Friday
+    - cron: "25 */2 * * 0,1,6"  # every two hours over the weekend and on Monday: fresh results from ESPN
   workflow_dispatch:
   push:
     branches: [main]

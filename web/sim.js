@@ -89,7 +89,7 @@ function render(res) {
   app.innerHTML = `
   <span class="kicker">Football Lab · ${esc(D.season)}</span>
   <h1>Season Simulator</h1>
-  <p class="note">Every remaining match played ${D.sims.toLocaleString("en-GB")} times with our expected-goals model, home advantage included. Pick any result below and the whole season is played again. Updated ${esc(new Date(D.updated).toLocaleDateString("en-GB", { day: "numeric", month: "short" }))}.</p>
+  <p class="note">Every remaining match played ${D.sims.toLocaleString("en-GB")} times with our expected-goals model, home advantage included. Pick any result below and the whole season is played again. Results up to ${esc(new Date(D.updated).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }))}${L.live ? `, including ${L.live} played since the last model update` : ""}.</p>
   <div class="tabs">${D.leagues.map((l, i) => `<button data-lg="${i}" class="${i === S.lg ? "on" : ""}">${esc(l.label)}</button>`).join("")}</div>
   <div class="panel"><div class="tw" id="tbl"><table><thead><tr><th class="l">Club</th><th class="hide-s">Now</th><th>Pts</th><th>Proj. pts</th><th>Title</th><th>${esc(L.top_label)}</th><th>${esc(L.bottom_label)}</th><th class="l hide-s">Finishing place</th></tr></thead><tbody>
   ${rows.map((x) => {
@@ -116,7 +116,7 @@ function render(res) {
         <div class="seg">${b("", "Model", m.lh.toFixed(1) + "–" + m.la.toFixed(1))}${b("H", "Home", pc(p[0]))}${b("D", "Draw", pc(p[1]))}${b("A", "Away", pc(p[2]))}</div></div>`;
     }).join("")}</div>
   </div>
-  <p class="note">The model: each club's attack and defence from expected goals (shot quality), steadied by last season, with this season's home advantage; the same ratings as the <a href="https://czakopeti.github.io/soccer_stats/" style="color:var(--ink)">PL X-ray</a> fair odds. Every simulated season also nudges each club's strength up or down a little at random, because no rating is certain. It knows nothing about injuries, transfers or a new manager.</p>`;
+  <p class="note">The model: each club's attack and defence from expected goals (shot quality), steadied by last season, with this season's home advantage. Every simulated season also nudges each club's strength up or down a little at random, because no rating is certain. It knows nothing about injuries, transfers or a new manager.</p>`;
 }
 
 function run() {

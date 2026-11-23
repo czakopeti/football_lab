@@ -14,6 +14,7 @@ from pathlib import Path
 up = Path(sys.argv[1]).resolve()
 out = Path(sys.argv[2]).resolve()
 sys.path.insert(0, str(up))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from plx.strength import predict, ratings  # noqa: E402  (soccer_stats model code, read only)
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -72,6 +73,17 @@ for spec in cfg["leagues"]:
     for t in data["teams"]:
         data["table"].setdefault(t, {"p": 0, "w": 0, "d": 0, "l": 0, "gf": 0, "ga": 0, "pts": 0})
     leagues.append({**spec, **data})
+
+# Results played since the PL X-ray update (it refreshes on Tuesday, Wednesday and Friday).
+import live  # noqa: E402
+
+log: list[str] = []
+for L in leagues:
+    try:
+        live.apply(L, L["espn"], cfg["user_agent"], log)
+    except Exception as exc:  # noqa: BLE001 - without live results the model-day table still stands
+        log.append(f"{L['label']}: live results not added ({exc})")
+print("\n".join(log))
 
 payload = {"updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "season": lj["season"],
            "noise": cfg["strength_noise"], "sims": cfg["sims"], "leagues": leagues}

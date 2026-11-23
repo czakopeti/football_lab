@@ -3,10 +3,51 @@
   "strength_noise": 0.08,
   "strength_noise_why": "Each simulated season multiplies every club's scoring and conceding rates by its own random factor (standard deviation 8%), because the ratings themselves are uncertain; without it the simulator is overconfident about the final table.",
   "leagues": [
-    {"label": "Premier League", "code": "ENG", "top": 4, "top_label": "Top 4", "bottom": 3, "bottom_label": "Relegation"},
-    {"label": "La Liga", "code": "ESP", "top": 4, "top_label": "Top 4", "bottom": 3, "bottom_label": "Relegation"},
-    {"label": "Bundesliga", "code": "GER", "top": 4, "top_label": "Top 4", "bottom": 3, "bottom_label": "Bottom 3 (2 down, 1 play-off)"},
-    {"label": "Serie A", "code": "ITA", "top": 4, "top_label": "Top 4", "bottom": 3, "bottom_label": "Relegation"},
-    {"label": "Ligue 1", "code": "FRA", "top": 4, "top_label": "Top 4", "bottom": 3, "bottom_label": "Bottom 3 (2 down, 1 play-off)"}
-  ]
+    {
+      "label": "Premier League",
+      "code": "ENG",
+      "top": 4,
+      "top_label": "Top 4",
+      "bottom": 3,
+      "bottom_label": "Relegation",
+      "espn": "eng.1"
+    },
+    {
+      "label": "La Liga",
+      "code": "ESP",
+      "top": 4,
+      "top_label": "Top 4",
+      "bottom": 3,
+      "bottom_label": "Relegation",
+      "espn": "esp.1"
+    },
+    {
+      "label": "Bundesliga",
+      "code": "GER",
+      "top": 4,
+      "top_label": "Top 4",
+      "bottom": 3,
+      "bottom_label": "Bottom 3 (2 down, 1 play-off)",
+      "espn": "ger.1"
+    },
+    {
+      "label": "Serie A",
+      "code": "ITA",
+      "top": 4,
+      "top_label": "Top 4",
+      "bottom": 3,
+      "bottom_label": "Relegation",
+      "espn": "ita.1"
+    },
+    {
+      "label": "Ligue 1",
+      "code": "FRA",
+      "top": 4,
+      "top_label": "Top 4",
+      "bottom": 3,
+      "bottom_label": "Bottom 3 (2 down, 1 play-off)",
+      "espn": "fra.1"
+    }
+  ],
+  "user_agent": "football-lab/1.0 (+https://github.com/czakopeti/football_lab)"
 }
