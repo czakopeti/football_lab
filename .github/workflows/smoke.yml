@@ -1,0 +1,14 @@
+name: Server check
+on:
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Call the game server
+        run: |
+          API=$(python3 -c "import json; print(json.load(open('config.json'))['api'])")
+          echo "board:"; curl -s -m 30 "$API/api/board" | head -c 400; echo
+          echo "fpl team 1:"; curl -s -m 60 "$API/api/fpl/1" | python3 -c "import json,sys; j=json.load(sys.stdin); print('players', len(j.get('players', [])), 'team', (j.get('team') or {}).get('name'), 'picks', len((j.get('team') or {}).get('picks', [])), j.get('error'))"
+          echo "site:"; curl -s -m 30 https://czakopeti.github.io/football_lab/api.json
