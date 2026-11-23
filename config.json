@@ -49,5 +49,6 @@
       "espn": "fra.1"
     }
   ],
-  "user_agent": "football-lab/1.0 (+https://github.com/czakopeti/football_lab)"
+  "user_agent": "football-lab/1.0 (+https://github.com/czakopeti/football_lab)",
+  "api": "https://football-lab.czakopeti-d97.workers.dev"
 }
