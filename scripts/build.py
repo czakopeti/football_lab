@@ -113,7 +113,13 @@ cat = Path(sys.argv[3]).resolve() if len(sys.argv) > 3 else None
 if cat and cat.exists():
     try:
         now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M")
-        upcoming = [f["r"] for f in gj["fixtures"] if f["t"][:16] > now]
+        # The next FPL gameweek is the first one that has not kicked off yet.
+        first = {}
+        for f in gj["fixtures"] + gj["results"]:
+            if "t" in f:
+                first[f["r"]] = min(first.get(f["r"], f["t"]), f["t"])
+        started = {x["r"] for x in gj["results"]}
+        upcoming = [r for r, t in first.items() if t[:16] > now and r not in started]
         next_gw = min(upcoming) if upcoming else min(f["r"] for f in gj["fixtures"])
         fj = fpl.build(cat, lj["season"].replace("/", "-"), gj["fixtures"], next_gw)
         (out_fpl := out / "fpl.json")
