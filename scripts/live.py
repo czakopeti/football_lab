@@ -17,7 +17,7 @@ DROP = {"fc", "afc", "cf", "ac", "as", "ss", "sc", "club", "de", "calcio", "1.",
 SAME = {"manchester": "man", "united": "utd", "nottingham": "nottm", "tottenham hotspur": "spurs", "tottenham": "spurs",
         "wolverhampton wanderers": "wolves", "internazionale": "inter", "paris saint germain": "psg", "paris sg": "psg",
         "borussia monchengladbach": "gladbach", "borussia m.gladbach": "gladbach", "monchengladbach": "gladbach",
-        "athletic bilbao": "athletic", "brighton & hove albion": "brighton", "hove albion": ""}
+        "athletic bilbao": "athletic", "rasenballsport leipzig": "rb leipzig", "brighton & hove albion": "brighton", "hove albion": ""}
 
 
 def norm(s: str) -> str:
