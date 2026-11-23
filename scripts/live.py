@@ -11,7 +11,7 @@ import urllib.request
 from datetime import date, datetime, timedelta, timezone
 from difflib import SequenceMatcher
 
-URL = "https://site.api.espn.com/apis/site/v2/sports/soccer/{slug}/scoreboard?dates={a}-{b}&limit=500"
+URL = "https://site.api.espn.com/apis/site/v2/sports/soccer/{slug}/scoreboard?dates={day}"
 DROP = {"fc", "afc", "cf", "ac", "as", "ss", "sc", "club", "de", "calcio", "1.", "fsv", "vfl", "vfb", "tsg", "rc", "ogc", "stade", "sv", "the", "and", "&", "cd", "ud", "rcd", "ca", "real", "1899", "05", "04"}
 # Short names the two sources spell differently.
 SAME = {"manchester": "man", "united": "utd", "nottingham": "nottm", "tottenham hotspur": "spurs", "tottenham": "spurs",
@@ -38,11 +38,15 @@ def sim(a: str, b: str) -> float:
 
 
 def fetch(slug: str, start: date, end: date, ua: str) -> list[dict]:
-    req = urllib.request.Request(URL.format(slug=slug, a=start.strftime("%Y%m%d"), b=end.strftime("%Y%m%d")), headers={"User-Agent": ua})
-    with urllib.request.urlopen(req, timeout=40) as r:
-        j = json.loads(r.read())
+    events = []
+    d = start
+    while d <= end:
+        req = urllib.request.Request(URL.format(slug=slug, day=d.strftime("%Y%m%d")), headers={"User-Agent": ua})
+        with urllib.request.urlopen(req, timeout=40) as r:
+            events += json.loads(r.read()).get("events", [])
+        d += timedelta(days=1)
     out = []
-    for e in j.get("events", []):
+    for e in events:
         c = (e.get("competitions") or [{}])[0]
         if not (c.get("status") or {}).get("type", {}).get("completed"):
             continue
@@ -60,8 +64,9 @@ def apply(league: dict, slug: str, ua: str, log: list) -> None:
     rest = league["rest"]
     if not rest:
         return
-    first = min(datetime.fromisoformat(m["t"].replace("Z", "+00:00")).date() for m in rest) - timedelta(days=3)
     today = datetime.now(timezone.utc).date()
+    # The PL X-ray data is at most a few days old; ten days back covers any gap.
+    first = max(min(datetime.fromisoformat(m["t"].replace("Z", "+00:00")).date() for m in rest) - timedelta(days=3), today - timedelta(days=10))
     if first > today:
         return
     events = fetch(slug, first, today, ua)
