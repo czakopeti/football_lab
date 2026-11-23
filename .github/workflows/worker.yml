@@ -1,0 +1,55 @@
+name: Game server
+on:
+  push:
+    branches: [main]
+    paths: ["worker/**", ".github/workflows/worker.yml"]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: worker
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check the Cloudflare secrets
+        id: ready
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::notice::Waiting for CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID under Settings > Secrets and variables > Actions."; echo "ok=no" >> "$GITHUB_OUTPUT"
+          else echo "ok=yes" >> "$GITHUB_OUTPUT"; fi
+      - if: steps.ready.outputs.ok == 'yes'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - if: steps.ready.outputs.ok == 'yes'
+        run: npm install -g wrangler@3.99.0
+      - name: Database (created once, then reused)
+        if: steps.ready.outputs.ok == 'yes'
+        working-directory: worker
+        run: |
+          ID=$(wrangler d1 list --json | python3 -c "import json,sys; print(next((d['uuid'] for d in json.load(sys.stdin) if d['name']=='football-lab'), ''))")
+          if [ -z "$ID" ]; then wrangler d1 create football-lab; ID=$(wrangler d1 list --json | python3 -c "import json,sys; print(next(d['uuid'] for d in json.load(sys.stdin) if d['name']=='football-lab'))"); fi
+          sed -i "s/__D1_ID__/$ID/" wrangler.toml
+          wrangler d1 execute football-lab --remote --file schema.sql
+      - name: Deploy
+        if: steps.ready.outputs.ok == 'yes'
+        working-directory: worker
+        run: |
+          wrangler deploy 2>&1 | tee deploy.log
+          URL=$(grep -oE 'https://[a-z0-9.-]+\.workers\.dev' deploy.log | head -1)
+          echo "Worker at $URL"
+          cd .. && python3 -c "import json,sys; p='config.json'; c=json.load(open(p)); c['api']=sys.argv[1]; open(p,'w').write(json.dumps(c, indent=2, ensure_ascii=False)+'\n')" "$URL"
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add config.json
+          if ! git diff --cached --quiet; then git commit -m "Game server address" && git push; fi
+      - name: Rebuild the site with the server address
+        if: steps.ready.outputs.ok == 'yes'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run weekly.yml --ref main

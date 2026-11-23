@@ -1,0 +1,1962 @@
+[
+{
+"id": "Arsenal|Aston Villa",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Arsenal|Bournemouth",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Arsenal|Brentford",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Arsenal|Brighton",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Arsenal|Crystal Palace",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Arsenal|Fulham",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Arsenal|Ipswich Town",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Arsenal|Liverpool",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Arsenal|Man City",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Arsenal|Man Utd",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Arsenal|Newcastle",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Arsenal|Nott'm Forest",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Arsenal|Spurs",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Arsenal|Sunderland",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Aston Villa|Bournemouth",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Aston Villa|Brighton",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Aston Villa|Chelsea",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Aston Villa|Coventry City",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Aston Villa|Crystal Palace",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Aston Villa|Everton",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Aston Villa|Hull City",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Aston Villa|Ipswich Town",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Aston Villa|Leeds",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Aston Villa|Liverpool",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Aston Villa|Man Utd",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Aston Villa|Newcastle",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Aston Villa|Spurs",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Aston Villa|Sunderland",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Bournemouth|Arsenal",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Bournemouth|Aston Villa",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Bournemouth|Brighton",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Bournemouth|Chelsea",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Bournemouth|Coventry City",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Bournemouth|Crystal Palace",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Bournemouth|Fulham",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Bournemouth|Hull City",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Bournemouth|Ipswich Town",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Bournemouth|Man City",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Bournemouth|Man Utd",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Bournemouth|Newcastle",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Bournemouth|Nott'm Forest",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Bournemouth|Spurs",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Brentford|Arsenal",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Brentford|Aston Villa",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Brentford|Bournemouth",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Brentford|Brighton",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Brentford|Coventry City",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Brentford|Crystal Palace",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Brentford|Everton",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Brentford|Fulham",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Brentford|Hull City",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Brentford|Ipswich Town",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Brentford|Leeds",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Brentford|Man City",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Brentford|Man Utd",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Brentford|Newcastle",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Brighton|Bournemouth",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Brighton|Chelsea",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Brighton|Coventry City",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Brighton|Everton",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Brighton|Fulham",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Brighton|Hull City",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Brighton|Ipswich Town",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Brighton|Liverpool",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Brighton|Man City",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Brighton|Man Utd",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Brighton|Newcastle",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Brighton|Nott'm Forest",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Brighton|Spurs",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Brighton|Sunderland",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Chelsea|Arsenal",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Chelsea|Aston Villa",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Chelsea|Brentford",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Chelsea|Coventry City",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Chelsea|Crystal Palace",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Chelsea|Everton",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Chelsea|Fulham",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Chelsea|Ipswich Town",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Chelsea|Leeds",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Chelsea|Liverpool",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Chelsea|Man City",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Chelsea|Newcastle",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Chelsea|Nott'm Forest",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Chelsea|Sunderland",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Coventry City|Arsenal",
+"model": [
+0,
+2
+]
+},
+{
+"id": "Coventry City|Aston Villa",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Coventry City|Bournemouth",
+"model": [
+0,
+2
+]
+},
+{
+"id": "Coventry City|Brentford",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Coventry City|Chelsea",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Coventry City|Crystal Palace",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Coventry City|Everton",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Coventry City|Ipswich Town",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Coventry City|Leeds",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Coventry City|Liverpool",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Coventry City|Man City",
+"model": [
+0,
+2
+]
+},
+{
+"id": "Coventry City|Man Utd",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Coventry City|Nott'm Forest",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Coventry City|Spurs",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Crystal Palace|Arsenal",
+"model": [
+0,
+2
+]
+},
+{
+"id": "Crystal Palace|Aston Villa",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Crystal Palace|Bournemouth",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Crystal Palace|Brentford",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Crystal Palace|Brighton",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Crystal Palace|Chelsea",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Crystal Palace|Coventry City",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Crystal Palace|Everton",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Crystal Palace|Fulham",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Crystal Palace|Hull City",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Crystal Palace|Leeds",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Crystal Palace|Man Utd",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Crystal Palace|Spurs",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Crystal Palace|Sunderland",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Everton|Arsenal",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Everton|Aston Villa",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Everton|Bournemouth",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Everton|Brentford",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Everton|Brighton",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Everton|Fulham",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Everton|Hull City",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Everton|Leeds",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Everton|Liverpool",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Everton|Man City",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Everton|Newcastle",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Everton|Nott'm Forest",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Everton|Spurs",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Everton|Sunderland",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Fulham|Arsenal",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Fulham|Aston Villa",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Fulham|Bournemouth",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Fulham|Brentford",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Fulham|Brighton",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Fulham|Coventry City",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Fulham|Everton",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Fulham|Ipswich Town",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Fulham|Leeds",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Fulham|Liverpool",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Fulham|Man City",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Fulham|Nott'm Forest",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Fulham|Spurs",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Fulham|Sunderland",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Hull City|Arsenal",
+"model": [
+0,
+2
+]
+},
+{
+"id": "Hull City|Bournemouth",
+"model": [
+0,
+2
+]
+},
+{
+"id": "Hull City|Brighton",
+"model": [
+0,
+2
+]
+},
+{
+"id": "Hull City|Chelsea",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Hull City|Coventry City",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Hull City|Crystal Palace",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Hull City|Fulham",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Hull City|Leeds",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Hull City|Liverpool",
+"model": [
+0,
+2
+]
+},
+{
+"id": "Hull City|Man City",
+"model": [
+0,
+2
+]
+},
+{
+"id": "Hull City|Newcastle",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Hull City|Nott'm Forest",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Hull City|Spurs",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Hull City|Sunderland",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Ipswich Town|Arsenal",
+"model": [
+0,
+2
+]
+},
+{
+"id": "Ipswich Town|Aston Villa",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Ipswich Town|Brentford",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Ipswich Town|Brighton",
+"model": [
+0,
+2
+]
+},
+{
+"id": "Ipswich Town|Chelsea",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Ipswich Town|Coventry City",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Ipswich Town|Crystal Palace",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Ipswich Town|Everton",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Ipswich Town|Hull City",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Ipswich Town|Leeds",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Ipswich Town|Man City",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Ipswich Town|Man Utd",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Ipswich Town|Newcastle",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Ipswich Town|Spurs",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Leeds|Arsenal",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Leeds|Aston Villa",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Leeds|Bournemouth",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Leeds|Brighton",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Leeds|Chelsea",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Leeds|Coventry City",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Leeds|Everton",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Leeds|Fulham",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Leeds|Hull City",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Leeds|Ipswich Town",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Leeds|Liverpool",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Leeds|Man City",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Leeds|Nott'm Forest",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Leeds|Sunderland",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Liverpool|Aston Villa",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Liverpool|Bournemouth",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Liverpool|Brentford",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Liverpool|Chelsea",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Liverpool|Coventry City",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Liverpool|Crystal Palace",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Liverpool|Everton",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Liverpool|Hull City",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Liverpool|Ipswich Town",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Liverpool|Leeds",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Liverpool|Man Utd",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Liverpool|Newcastle",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Liverpool|Spurs",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Liverpool|Sunderland",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Man City|Arsenal",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Man City|Aston Villa",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Man City|Brentford",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Man City|Chelsea",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Man City|Crystal Palace",
+"model": [
+3,
+0
+]
+},
+{
+"id": "Man City|Everton",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Man City|Fulham",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Man City|Hull City",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Man City|Leeds",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Man City|Liverpool",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Man City|Man Utd",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Man City|Newcastle",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Man City|Nott'm Forest",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Man City|Spurs",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Man Utd|Arsenal",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Man Utd|Brentford",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Man Utd|Brighton",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Man Utd|Chelsea",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Man Utd|Coventry City",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Man Utd|Crystal Palace",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Man Utd|Everton",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Man Utd|Fulham",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Man Utd|Hull City",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Man Utd|Leeds",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Man Utd|Liverpool",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Man Utd|Newcastle",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Man Utd|Nott'm Forest",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Man Utd|Sunderland",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Newcastle|Arsenal",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Newcastle|Brentford",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Newcastle|Brighton",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Newcastle|Chelsea",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Newcastle|Coventry City",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Newcastle|Crystal Palace",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Newcastle|Fulham",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Newcastle|Ipswich Town",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Newcastle|Leeds",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Newcastle|Man City",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Newcastle|Man Utd",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Newcastle|Nott'm Forest",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Newcastle|Spurs",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Newcastle|Sunderland",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Nott'm Forest|Aston Villa",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Nott'm Forest|Bournemouth",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Nott'm Forest|Brentford",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Nott'm Forest|Brighton",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Nott'm Forest|Chelsea",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Nott'm Forest|Crystal Palace",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Nott'm Forest|Everton",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Nott'm Forest|Fulham",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Nott'm Forest|Hull City",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Nott'm Forest|Ipswich Town",
+"model": [
+2,
+0
+]
+},
+{
+"id": "Nott'm Forest|Liverpool",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Nott'm Forest|Man Utd",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Nott'm Forest|Newcastle",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Nott'm Forest|Sunderland",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Spurs|Arsenal",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Spurs|Bournemouth",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Spurs|Brentford",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Spurs|Brighton",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Spurs|Chelsea",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Spurs|Fulham",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Spurs|Hull City",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Spurs|Ipswich Town",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Spurs|Leeds",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Spurs|Liverpool",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Spurs|Man City",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Spurs|Man Utd",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Spurs|Nott'm Forest",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Spurs|Sunderland",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Sunderland|Aston Villa",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Sunderland|Bournemouth",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Sunderland|Brentford",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Sunderland|Coventry City",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Sunderland|Crystal Palace",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Sunderland|Everton",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Sunderland|Hull City",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Sunderland|Ipswich Town",
+"model": [
+2,
+1
+]
+},
+{
+"id": "Sunderland|Liverpool",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Sunderland|Man City",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Sunderland|Man Utd",
+"model": [
+1,
+2
+]
+},
+{
+"id": "Sunderland|Newcastle",
+"model": [
+1,
+0
+]
+},
+{
+"id": "Sunderland|Nott'm Forest",
+"model": [
+0,
+1
+]
+},
+{
+"id": "Sunderland|Spurs",
+"model": [
+0,
+1
+]
+}
+]

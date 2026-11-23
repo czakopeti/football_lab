@@ -98,6 +98,11 @@ def apply(league: dict, slug: str, ua: str, log: list) -> None:
             if gf > ga: r["w"] += 1; r["pts"] += 3
             elif gf == ga: r["d"] += 1; r["pts"] += 1
             else: r["l"] += 1
+    if "results" in league:
+        for i in sorted(taken):
+            m = rest[i]
+            hs, as_ = next((x[2], x[3]) for x in played if x[0] == m["h"] and x[1] == m["a"])
+            league["results"].append({"r": m["r"], "h": m["h"], "a": m["a"], "hs": hs, "as": as_})
     league["rest"] = [m for i, m in enumerate(rest) if i not in taken]
     league["live"] = len(played)
     log.append(f"{league['label']}: {len(played)} results added from ESPN, {len(events)} finished events checked")

@@ -41,13 +41,14 @@ def premier_league() -> dict:
     R = ratings(d["matches"], teams, d["prior"], int(d["gw"]), c["ratings"], c["ratings"]["goal_level_prior"], hg)
     played = [(m["h"], m["a"], int(m["hs"]), int(m["as"])) for m in d["matches"]]
     done = {(m["h"], m["a"]) for m in d["matches"]}
+    results = [{"r": int(m["gw"]), "h": m["h"], "a": m["a"], "hs": int(m["hs"]), "as": int(m["as"])} for m in d["matches"]]
     rest = []
     for f in d["fx"]:
         if (f[1], f[2]) in done:
             continue
         q = predict(f[1], f[2], R, c["prediction"]["dixon_coles_rho"], c["prediction"]["max_goals"])
         rest.append({"r": int(f[0]), "h": f[1], "a": f[2], "t": f[3], "lh": round(q["lh"], 3), "la": round(q["la"], 3)})
-    return {"teams": sorted(teams), "played": played, "rest": rest, "round_name": "Gameweek"}
+    return {"teams": sorted(teams), "played": played, "rest": rest, "results": results, "round_name": "Gameweek"}
 
 
 def other(L: dict) -> dict:
@@ -85,9 +86,50 @@ for L in leagues:
         log.append(f"{L['label']}: live results not added ({exc})")
 print("\n".join(log))
 
+# Prediction game (Premier League) and FPL helper data.
+import game  # noqa: E402
+
+pl = next(L for L in leagues if L["label"] == "Premier League")
+prev = {}
+try:
+    prev = {x["id"]: x["model"] for x in json.loads((ROOT / "state" / "model_picks.json").read_text())}
+except (FileNotFoundError, ValueError):
+    pass
+gj = game.build(pl)
+# Remember the model's pick for every fixture, so finished matches keep the pick it made before kickoff.
+for f in gj["fixtures"]:
+    prev[f["id"]] = f["model"]
+for r in gj["results"]:
+    if r["id"] in prev:
+        r["model"] = prev[r["id"]]
+(ROOT / "state").mkdir(exist_ok=True)
+(ROOT / "state" / "model_picks.json").write_text(json.dumps([{"id": k, "model": v} for k, v in sorted(prev.items())], indent=0), encoding="utf-8")
+pl.pop("results", None)
+
+# FPL helper: expected points per player for the next three gameweeks (needs a pl-catalogue checkout).
+import fpl  # noqa: E402
+
+cat = Path(sys.argv[3]).resolve() if len(sys.argv) > 3 else None
+if cat and cat.exists():
+    try:
+        now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M")
+        upcoming = [f["r"] for f in gj["fixtures"] if f["t"][:16] > now]
+        next_gw = min(upcoming) if upcoming else min(f["r"] for f in gj["fixtures"])
+        fj = fpl.build(cat, lj["season"].replace("/", "-"), gj["fixtures"], next_gw)
+        (out_fpl := out / "fpl.json")
+        out.mkdir(parents=True, exist_ok=True)
+        out_fpl.write_text(json.dumps({"updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), **fj}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        print("fpl players", len(fj["players"]), "gws", fj["gws"], "data to gw", fj["data_to_gw"])
+    except Exception as exc:  # noqa: BLE001 - the simulator and the game still publish
+        print("FPL data not built:", exc)
+for L in leagues:
+    L.pop("results", None)
+
 payload = {"updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "season": lj["season"],
            "noise": cfg["strength_noise"], "sims": cfg["sims"], "leagues": leagues}
 out.mkdir(parents=True, exist_ok=True)
+(out / "api.json").write_text(json.dumps({"api": cfg.get("api", "")}), encoding="utf-8")
+(out / "game.json").write_text(json.dumps({"updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), **gj}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 (out / "data.json").write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 for f in (ROOT / "web").iterdir():
     shutil.copy(f, out / f.name)
