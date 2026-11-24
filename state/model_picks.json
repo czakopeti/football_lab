@@ -150,7 +150,7 @@
 "id": "Aston Villa|Ipswich Town",
 "model": [
 2,
-1
+0
 ]
 },
 {
@@ -184,8 +184,8 @@
 {
 "id": "Aston Villa|Spurs",
 "model": [
-2,
-1
+1,
+0
 ]
 },
 {
@@ -212,15 +212,15 @@
 {
 "id": "Bournemouth|Brighton",
 "model": [
-1,
-0
+2,
+1
 ]
 },
 {
 "id": "Bournemouth|Chelsea",
 "model": [
 2,
-1
+0
 ]
 },
 {
@@ -310,15 +310,15 @@
 {
 "id": "Brentford|Bournemouth",
 "model": [
-0,
-1
+1,
+0
 ]
 },
 {
 "id": "Brentford|Brighton",
 "model": [
-0,
-1
+1,
+0
 ]
 },
 {
@@ -394,15 +394,15 @@
 {
 "id": "Brighton|Bournemouth",
 "model": [
-1,
-0
+2,
+1
 ]
 },
 {
 "id": "Brighton|Chelsea",
 "model": [
 2,
-0
+1
 ]
 },
 {
@@ -415,7 +415,7 @@
 {
 "id": "Brighton|Everton",
 "model": [
-1,
+2,
 0
 ]
 },
@@ -485,7 +485,7 @@
 {
 "id": "Brighton|Sunderland",
 "model": [
-2,
+1,
 0
 ]
 },
@@ -507,14 +507,14 @@
 "id": "Chelsea|Brentford",
 "model": [
 1,
-0
+2
 ]
 },
 {
 "id": "Chelsea|Coventry City",
 "model": [
 2,
-0
+1
 ]
 },
 {
@@ -527,8 +527,8 @@
 {
 "id": "Chelsea|Everton",
 "model": [
-1,
-0
+2,
+1
 ]
 },
 {
@@ -555,8 +555,8 @@
 {
 "id": "Chelsea|Liverpool",
 "model": [
-0,
-1
+1,
+2
 ]
 },
 {
@@ -569,15 +569,15 @@
 {
 "id": "Chelsea|Newcastle",
 "model": [
-1,
-0
+2,
+1
 ]
 },
 {
 "id": "Chelsea|Nott'm Forest",
 "model": [
-1,
-0
+2,
+1
 ]
 },
 {
@@ -604,15 +604,15 @@
 {
 "id": "Coventry City|Bournemouth",
 "model": [
-0,
+1,
 2
 ]
 },
 {
 "id": "Coventry City|Brentford",
 "model": [
-0,
-1
+1,
+2
 ]
 },
 {
@@ -654,13 +654,13 @@
 "id": "Coventry City|Liverpool",
 "model": [
 0,
-1
+2
 ]
 },
 {
 "id": "Coventry City|Man City",
 "model": [
-0,
+1,
 2
 ]
 },
@@ -723,8 +723,8 @@
 {
 "id": "Crystal Palace|Chelsea",
 "model": [
-1,
-2
+2,
+1
 ]
 },
 {
@@ -737,8 +737,8 @@
 {
 "id": "Crystal Palace|Everton",
 "model": [
-1,
-2
+2,
+1
 ]
 },
 {
@@ -758,8 +758,8 @@
 {
 "id": "Crystal Palace|Leeds",
 "model": [
-0,
-1
+1,
+2
 ]
 },
 {
@@ -772,8 +772,8 @@
 {
 "id": "Crystal Palace|Spurs",
 "model": [
-1,
-2
+0,
+1
 ]
 },
 {
@@ -793,8 +793,8 @@
 {
 "id": "Everton|Aston Villa",
 "model": [
-2,
-1
+1,
+2
 ]
 },
 {
@@ -807,8 +807,8 @@
 {
 "id": "Everton|Brentford",
 "model": [
-1,
-0
+0,
+1
 ]
 },
 {
@@ -835,8 +835,8 @@
 {
 "id": "Everton|Leeds",
 "model": [
-1,
-0
+0,
+1
 ]
 },
 {
@@ -863,15 +863,15 @@
 {
 "id": "Everton|Nott'm Forest",
 "model": [
-1,
-0
+0,
+1
 ]
 },
 {
 "id": "Everton|Spurs",
 "model": [
-1,
-0
+0,
+1
 ]
 },
 {
@@ -892,7 +892,7 @@
 "id": "Fulham|Aston Villa",
 "model": [
 1,
-2
+0
 ]
 },
 {
@@ -940,8 +940,8 @@
 {
 "id": "Fulham|Leeds",
 "model": [
-1,
-0
+0,
+1
 ]
 },
 {
@@ -1003,22 +1003,22 @@
 {
 "id": "Hull City|Chelsea",
 "model": [
-0,
-1
+1,
+2
 ]
 },
 {
 "id": "Hull City|Coventry City",
 "model": [
-0,
-1
+1,
+0
 ]
 },
 {
 "id": "Hull City|Crystal Palace",
 "model": [
-1,
-2
+2,
+1
 ]
 },
 {
@@ -1129,8 +1129,8 @@
 {
 "id": "Ipswich Town|Everton",
 "model": [
-1,
-2
+0,
+1
 ]
 },
 {
@@ -1150,7 +1150,7 @@
 {
 "id": "Ipswich Town|Man City",
 "model": [
-1,
+0,
 2
 ]
 },
@@ -1192,15 +1192,15 @@
 {
 "id": "Leeds|Bournemouth",
 "model": [
-0,
-1
+1,
+0
 ]
 },
 {
 "id": "Leeds|Brighton",
 "model": [
-0,
-1
+1,
+0
 ]
 },
 {
@@ -1213,7 +1213,7 @@
 {
 "id": "Leeds|Coventry City",
 "model": [
-1,
+2,
 0
 ]
 },
@@ -1234,14 +1234,14 @@
 {
 "id": "Leeds|Hull City",
 "model": [
-1,
+2,
 0
 ]
 },
 {
 "id": "Leeds|Ipswich Town",
 "model": [
-1,
+2,
 0
 ]
 },
@@ -1277,7 +1277,7 @@
 "id": "Liverpool|Aston Villa",
 "model": [
 2,
-1
+0
 ]
 },
 {
@@ -1297,7 +1297,7 @@
 {
 "id": "Liverpool|Chelsea",
 "model": [
-1,
+2,
 0
 ]
 },
@@ -1318,7 +1318,7 @@
 {
 "id": "Liverpool|Everton",
 "model": [
-1,
+2,
 0
 ]
 },
@@ -1332,7 +1332,7 @@
 {
 "id": "Liverpool|Ipswich Town",
 "model": [
-2,
+3,
 0
 ]
 },
@@ -1353,7 +1353,7 @@
 {
 "id": "Liverpool|Newcastle",
 "model": [
-1,
+2,
 0
 ]
 },
@@ -1374,8 +1374,8 @@
 {
 "id": "Man City|Arsenal",
 "model": [
-0,
-1
+1,
+0
 ]
 },
 {
@@ -1396,7 +1396,7 @@
 "id": "Man City|Chelsea",
 "model": [
 2,
-1
+0
 ]
 },
 {
@@ -1437,8 +1437,8 @@
 {
 "id": "Man City|Liverpool",
 "model": [
-2,
-1
+1,
+0
 ]
 },
 {
@@ -1458,7 +1458,7 @@
 {
 "id": "Man City|Nott'm Forest",
 "model": [
-1,
+2,
 0
 ]
 },
@@ -1472,15 +1472,15 @@
 {
 "id": "Man Utd|Arsenal",
 "model": [
-0,
-1
+1,
+2
 ]
 },
 {
 "id": "Man Utd|Brentford",
 "model": [
-2,
-1
+1,
+2
 ]
 },
 {
@@ -1529,14 +1529,14 @@
 "id": "Man Utd|Hull City",
 "model": [
 2,
-0
+1
 ]
 },
 {
 "id": "Man Utd|Leeds",
 "model": [
 1,
-0
+2
 ]
 },
 {
@@ -1584,22 +1584,22 @@
 {
 "id": "Newcastle|Brighton",
 "model": [
-0,
-1
+1,
+2
 ]
 },
 {
 "id": "Newcastle|Chelsea",
 "model": [
-0,
+2,
 1
 ]
 },
 {
 "id": "Newcastle|Coventry City",
 "model": [
-1,
-0
+2,
+1
 ]
 },
 {
@@ -1640,15 +1640,15 @@
 {
 "id": "Newcastle|Man Utd",
 "model": [
-1,
-2
+2,
+1
 ]
 },
 {
 "id": "Newcastle|Nott'm Forest",
 "model": [
-0,
-1
+1,
+0
 ]
 },
 {
@@ -1696,8 +1696,8 @@
 {
 "id": "Nott'm Forest|Chelsea",
 "model": [
-1,
-0
+2,
+1
 ]
 },
 {
@@ -1724,7 +1724,7 @@
 {
 "id": "Nott'm Forest|Hull City",
 "model": [
-1,
+2,
 0
 ]
 },
@@ -1864,8 +1864,8 @@
 {
 "id": "Sunderland|Aston Villa",
 "model": [
-1,
-2
+0,
+1
 ]
 },
 {
@@ -1899,8 +1899,8 @@
 {
 "id": "Sunderland|Everton",
 "model": [
-0,
-1
+1,
+0
 ]
 },
 {
@@ -1913,8 +1913,8 @@
 {
 "id": "Sunderland|Ipswich Town",
 "model": [
-2,
-1
+1,
+0
 ]
 },
 {
@@ -1927,15 +1927,15 @@
 {
 "id": "Sunderland|Man City",
 "model": [
-1,
-2
+0,
+1
 ]
 },
 {
 "id": "Sunderland|Man Utd",
 "model": [
-1,
-2
+2,
+1
 ]
 },
 {
