@@ -6,6 +6,7 @@ Nothing in soccer_stats is changed: its data files and model code are only read.
 from __future__ import annotations
 
 import json
+import re
 import shutil
 import sys
 from datetime import datetime, timezone
@@ -142,6 +143,15 @@ out.mkdir(parents=True, exist_ok=True)
 (out / "api.json").write_text(json.dumps({"api": cfg.get("api", "")}), encoding="utf-8")
 (out / "game.json").write_text(json.dumps({"updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), **gj}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 (out / "data.json").write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+# Pages are cached by browsers and the CDN, so each build stamps its scripts and styles with a version:
+# a new build is picked up at the next reload.
+ver = datetime.now(timezone.utc).strftime("%Y%m%d%H%M")
 for f in (ROOT / "web").iterdir():
-    shutil.copy(f, out / f.name)
+    if f.suffix == ".html":
+        html = f.read_text(encoding="utf-8")
+        for ext in (".js", ".css"):
+            html = re.sub(rf'((?:src|href)="[^"/:]+{re.escape(ext)})"', rf'\1?v={ver}"', html)
+        (out / f.name).write_text(html, encoding="utf-8")
+    else:
+        shutil.copy(f, out / f.name)
 print({L["label"]: (len(L["teams"]), len(L["rest"])) for L in leagues})
