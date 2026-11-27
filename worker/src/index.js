@@ -66,10 +66,13 @@ async function fpl(env, id) {
   if (!id) return { players, next: next && next.id };
   const entry = await get(`https://fantasy.premierleague.com/api/entry/${id}/`, 60);
   const picks = await get(`https://fantasy.premierleague.com/api/entry/${id}/event/${cur.id}/picks/`, 60);
+  // Chips already played (name and gameweek), so the helper knows which ones are left.
+  let chips = [];
+  try { chips = ((await get(`https://fantasy.premierleague.com/api/entry/${id}/history/`, 60)).chips || []).map((c) => ({ name: c.name, gw: c.event })); } catch (e) { chips = null; }
   return {
     players, next: next && next.id, gw: cur.id,
     team: { name: entry.name, manager: `${entry.player_first_name} ${entry.player_last_name}`, bank: (picks.entry_history.bank || 0) / 10, value: (picks.entry_history.value || 0) / 10,
-      chip: picks.active_chip, picks: picks.picks.map((p) => ({ id: p.element, pos: p.position, captain: p.is_captain, vice: p.is_vice_captain, selling: p.selling_price ? p.selling_price / 10 : null })) },
+      chip: picks.active_chip, chips, picks: picks.picks.map((p) => ({ id: p.element, pos: p.position, captain: p.is_captain, vice: p.is_vice_captain, selling: p.selling_price ? p.selling_price / 10 : null })) },
   };
 }
 

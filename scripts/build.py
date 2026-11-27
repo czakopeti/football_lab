@@ -121,7 +121,12 @@ if cat and cat.exists():
         started = {x["r"] for x in gj["results"]}
         upcoming = [r for r, t in first.items() if t[:16] > now and r not in started]
         next_gw = min(upcoming) if upcoming else min(f["r"] for f in gj["fixtures"])
-        fj = fpl.build(cat, lj["season"].replace("/", "-"), gj["fixtures"], next_gw)
+        # Chips come in two sets: the first must be played by gameweek 19, the second by 38. Expected
+        # points run to that deadline (at most 8 gameweeks) so the page can say when each chip pays most.
+        chip_deadline = 19 if next_gw <= 19 else 38
+        horizon = min(8, max(3, chip_deadline - next_gw + 1))
+        fj = fpl.build(cat, lj["season"].replace("/", "-"), gj["fixtures"], next_gw, horizon=horizon)
+        fj["chip_deadline"] = chip_deadline
         (out_fpl := out / "fpl.json")
         out.mkdir(parents=True, exist_ok=True)
         out_fpl.write_text(json.dumps({"updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), **fj}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
