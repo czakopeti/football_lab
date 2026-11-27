@@ -104,7 +104,7 @@ function chipPlan(squad, live) {
   const next = X.gws[0], last = Math.min(X.chip_deadline || 19, X.gws[X.gws.length - 1]);
   const first = (X.chip_deadline || 19) === 19;
   const used = (F.team.chips || []).filter((c) => (first ? c.gw <= 19 : c.gw >= 20));
-  const value = (squad.reduce((a, p) => a + (p.sell ?? p.cost ?? 0), 0)) + F.team.bank;
+  const value = (squad.reduce((a, p) => a + (p.sell ?? p.cost ?? 0), 0)) + (F.team.bankNow ?? F.team.bank);
   const ks = X.gws.map((g, k) => k).filter((k) => X.gws[k] <= last);
   const V = {};
   for (const k of ks) {
@@ -139,6 +139,10 @@ function chipPanel(squad, live) {
     <p class="note">Extra expected points from the chip in each gameweek with your current squad: Bench Boost adds your bench, Triple Captain your captain once more (${esc(c.V[0] ? c.V[0].cap : "")} this week), Free Hit the best eleven you could field for one week within your squad value, minus your own. Underlined: the week that gives the most when the chips are spread over different weeks. ${special.length ? `Double or blank gameweeks ahead: ${special.map(([g, t]) => `GW${g}: ${Object.entries(t).map(([team, n]) => `${esc(team)} ${n === 0 ? "blank" : n + " games"}`).join(", ")}`).join("; ")}; chips usually pay most there.` : `No double or blank gameweeks before the deadline so far; if one is announced (postponed matches), it is usually the best week for Bench Boost and Triple Captain.`} The Wildcard is for rebuilding the squad (four or more transfers), so it has no points value here.</p></div>`;
 }
 
+const madeKey = () => `lab-fpl-made-${S.id}-${X.gws[0]}`;
+function madeList() { try { return JSON.parse(ls.get(madeKey()) || "[]"); } catch (e) { return []; } }
+function madeSave(L) { ls.set(madeKey(), JSON.stringify(L)); }
+
 function render() {
   const head = `<span class="kicker">Football Lab · Fantasy Premier League</span><h1>FPL Helper</h1>
   <p class="note">Enter your FPL team ID and get expected points for your squad over the next three gameweeks, the best transfers, your line-up and captain. Free, nothing to sign up for.</p>
@@ -149,20 +153,32 @@ function render() {
     ${S.err ? `<div class="msg err">${esc(S.err)}</div>` : ""}</div>`;
   if (!F) { app.innerHTML = head; return; }
   const live = Object.fromEntries(F.players.map((p) => [p.id, p]));
-  const squad = F.team.picks.map((p) => {
-    const info = X.byId[p.id] || {}; const l = live[p.id] || {};
-    const all = xp(p.id, live);
-    return { id: p.id, name: l.name || info.name || "?", team: info.team || "?", pos: POS[l.pos] || info.pos, cost: l.cost, sell: p.selling ?? l.cost, x: all, xall: all, opp: info.opp || ["", "", ""], news: l.news, status: l.status };
+  const mk = (id, selling) => {
+    const info = X.byId[id] || {}; const l = live[id] || {};
+    const all = xp(id, live);
+    return { id, name: l.name || info.name || "?", team: info.team || "?", pos: POS[l.pos] || info.pos, cost: l.cost, sell: selling ?? l.cost, x: all, xall: all, opp: info.opp || ["", "", ""], news: l.news, status: l.status };
+  };
+  const squad = F.team.picks.map((p) => mk(p.id, p.selling));
+  // Transfers made on the FPL site for the coming gameweek are not public until the deadline, so the
+  // ones marked here as made are applied to the squad and the bank (at current prices).
+  let bank = F.team.bank;
+  const made = madeList().filter(([o, i]) => {
+    const k = squad.findIndex((p) => p.id === o);
+    if (k < 0 || squad.some((p) => p.id === i) || !live[i]) return false;
+    bank += squad[k].sell - live[i].cost; squad[k] = mk(i, live[i].cost); return true;
   });
+  bank = Math.round(bank * 10) / 10;
+  F.team.bankNow = bank;
   const b = bestXI(squad, 0);
-  const T = transfers(squad, F.team.bank, live, S.ft);
-  const free = S.ft;
+  const free = Math.max(0, S.ft - made.length);
+  const T = transfers(squad, bank, live, Math.max(free, 1));
   const mv = (m) => m.map(([o, i]) => `<b>${esc(o.name)}</b> → <b>${esc(i.name)}</b> <span class="note">(${esc(i.team)}, £${i.cost.toFixed(1)}m)</span>`).join("<br>");
   const twoHit = T.two ? T.two.gain - (free >= 2 ? 0 : 4) : null;
   const rec = (() => {
     // Saving a free transfer is worth something (two next week allow a bigger change), so a small gain is
     // not enough to spend one. At five saved transfers another one would be lost, so then any gain counts.
     const g1 = T.one.length ? T.one[0].gain : 0;
+    if (free === 0) return g1 > 4.5 ? `One more transfer pays even with the −4 hit: about <b>+${(g1 - 4).toFixed(1)}</b> expected points after it.` : `Done for this gameweek: no further transfer is worth a −4 hit.`;
     if (free >= 5 && g1 > 0) return `Make the top single transfer: you already hold five free transfers, so saving one more would waste it (about <b>+${g1.toFixed(1)}</b> expected points).`;
     if (!T.one.length || g1 < 1.5) return `Save your transfer for next week: the best move adds only ${g1 > 0 ? `+${g1.toFixed(1)}` : "nothing"}, and with ${Math.min(free + 1, 5)} free transfers next week you can make a bigger change.`;
     if (T.two && twoHit > T.one[0].gain + 0.5) return `Make two transfers${free >= 2 ? "" : " (−4 points)"}: about <b>+${twoHit.toFixed(1)}</b> expected points after the hit.`;
@@ -170,13 +186,18 @@ function render() {
   })();
   const bench = squad.filter((p) => !b.xi.includes(p)).sort((x, y) => (x.pos === "GKP") - (y.pos === "GKP") || y.x[0] - x.x[0]);
   app.innerHTML = head + `
-  <div class="panel"><b>${esc(F.team.name)}</b> <span class="note">· ${esc(F.team.manager)} · bank £${F.team.bank.toFixed(1)}m${F.team.chip ? ` · chip: ${esc(F.team.chip)}` : ""}${F.team.pending && F.team.pending.length ? ` · includes ${F.team.pending.length} transfer${F.team.pending.length > 1 ? "s" : ""} already made for gameweek ${X.gws[0]}` : ""}</span>
+  <div class="panel"><b>${esc(F.team.name)}</b> <span class="note">· ${esc(F.team.manager)} · bank £${bank.toFixed(1)}m${F.team.chip ? ` · chip: ${esc(F.team.chip)}` : ""}${F.team.pending && F.team.pending.length ? ` · includes ${F.team.pending.length} transfer${F.team.pending.length > 1 ? "s" : ""} already made for gameweek ${X.gws[0]}` : ""}</span>
+    ${made.length ? `<p class="note" style="margin:10px 0 0">Transfers you marked as made for gameweek ${X.gws[0]}: ${made.map(([o, i], j) => `${esc((live[o] || {}).name || o)} → <b>${esc((live[i] || {}).name || i)}</b> <button class="btn" data-undo="${j}" style="padding:2px 8px">undo</button>`).join(" · ")}</p>` : ""}
     <p style="margin:10px 0 4px">${rec}</p>
     <div class="tw"><table><thead><tr><th class="l">Best single transfers</th><th>Gain</th></tr></thead><tbody>
-    ${T.one.map((t) => `<tr><td class="l">${mv(t.moves)}</td><td class="mono">+${t.gain.toFixed(1)}</td></tr>`).join("") || `<tr><td class="l" colspan="2">None that fit your budget.</td></tr>`}
+    ${T.one.map((t) => `<tr><td class="l">${mv(t.moves)} <button class="btn" data-made="${t.moves[0][0].id},${t.moves[0][1].id}" style="padding:2px 8px">I made this</button></td><td class="mono">+${t.gain.toFixed(1)}</td></tr>`).join("") || `<tr><td class="l" colspan="2">None that fit your budget.</td></tr>`}
     ${T.two ? `<tr><td class="l"><span class="note">Best pair:</span><br>${mv(T.two.moves)}</td><td class="mono">+${T.two.gain.toFixed(1)}${free >= 2 ? "" : `<br><span class="note">−4 hit: ${twoHit >= 0 ? "+" : ""}${twoHit.toFixed(1)}</span>`}</td></tr>` : ""}
     </tbody></table></div>
-    <p class="note">Gain: extra expected points from your best line-up, this gameweek plus 0.6 × each of the next two. Prices are current FPL prices; your selling price can be a little lower.</p></div>
+    <p class="note">Gain: extra expected points from your best line-up, this gameweek plus 0.6 × each of the next two. Prices are current FPL prices; your selling price can be a little lower.</p>
+    <div class="row" style="margin-top:8px"><span class="note">Made a transfer on the FPL site? FPL shows it only after the deadline, so mark it here:</span>
+      <select id="mo">${squad.map((p) => `<option value="${p.id}">${esc(p.name)}</option>`).join("")}</select> →
+      <input type="text" id="mi" list="allp" placeholder="player who came in" style="width:200px"><datalist id="allp">${F.players.filter((p) => !squad.some((q) => q.id === p.id)).map((p) => `<option value="${esc(p.name)} · ${esc((X.byId[p.id] || {}).team || "")} · ${POS[p.pos]} · £${p.cost.toFixed(1)}m"></option>`).join("")}</datalist>
+      <button class="btn" id="madd">Add</button></div></div>
   ${chipPanel(squad, live)}
   <div class="panel"><b>Line-up for gameweek ${X.gws[0]}</b> <span class="note">· ${b.form} · about ${b.tot.toFixed(1)} points with the captain · captain ${esc(b.cap.name)}, vice-captain ${esc(b.vice.name)}</span>
     <div class="tw"><table><thead><tr><th class="l">Player</th><th class="l">Next</th>${X.gws.slice(0, 3).map((g) => `<th>GW${g}</th>`).join("")}<th></th></tr></thead><tbody>
@@ -195,7 +216,17 @@ async function analyse() {
   catch (e) { S.err = /404/.test(e.message) ? "No FPL team with that ID." : `Could not load the team: ${e.message}`; F = null; }
   S.busy = false; render();
 }
-app.addEventListener("click", (e) => { if (e.target.id === "go") analyse(); });
+app.addEventListener("click", (e) => {
+  if (e.target.id === "go") return analyse();
+  const m = e.target.closest("[data-made]"), u = e.target.closest("[data-undo]");
+  if (m) { const [o, i] = m.dataset.made.split(",").map(Number); madeSave([...madeList(), [o, i]]); return render(); }
+  if (u) { const L = madeList(); L.splice(+u.dataset.undo, 1); madeSave(L); return render(); }
+  if (e.target.id === "madd") {
+    const o = +document.getElementById("mo").value, txt = (document.getElementById("mi").value || "").trim();
+    const p = F.players.find((q) => `${q.name} · ${(X.byId[q.id] || {}).team || ""} · ${POS[q.pos]} · £${q.cost.toFixed(1)}m` === txt) || F.players.find((q) => q.name.toLowerCase() === txt.toLowerCase());
+    if (p) { madeSave([...madeList(), [o, p.id]]); render(); }
+  }
+});
 app.addEventListener("keydown", (e) => { if (e.target.id === "tid" && e.key === "Enter") analyse(); });
 app.addEventListener("change", (e) => { if (e.target.id === "ft") { S.ft = +e.target.value; if (F) render(); } });
 
