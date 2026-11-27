@@ -75,4 +75,12 @@ def build(catalogue: Path, season: str, fixtures: list[dict], next_gw: int, hori
         players.append({"id": int(pid), "name": str(info.web_name.iloc[0]) if len(info) else str(g.name.iloc[-1]),
                         "team": team, "pos": pos, "price": float(info.price.iloc[0]) if len(info) else None,
                         "xp": xp, "opp": opp, "mins": round(mins)})
-    return {"gws": gws, "data_to_gw": last, "players": players}
+    # Matches per club in each gameweek: 2 is a double gameweek, 0 a blank one (chips pay most there).
+    counts = {str(gw): {} for gw in gws}
+    for f in fixtures:
+        if f["r"] in gws:
+            for t in (f["h"], f["a"]):
+                counts[str(f["r"])][t] = counts[str(f["r"])].get(t, 0) + 1
+    teams = sorted({f["h"] for f in fixtures} | {f["a"] for f in fixtures})
+    special = {gw: {t: c.get(t, 0) for t in teams if c.get(t, 0) != 1} for gw, c in counts.items()}
+    return {"gws": gws, "data_to_gw": last, "players": players, "special": special}
