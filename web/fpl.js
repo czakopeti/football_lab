@@ -113,7 +113,7 @@ function render() {
     ${[...b.xi, ...bench].map((p, i) => `<tr${i === 11 ? ' style="border-top:2px solid var(--line)"' : ""}><td class="l"><b>${esc(p.name)}</b> <span class="note">${esc(p.pos)} · ${esc(p.team)}</span>${p === b.cap ? ' <span class="pill ok">C</span>' : ""}${i >= 11 ? ' <span class="pill">bench</span>' : ""}${p.status && p.status !== "a" ? ` <span class="pill no" title="${esc(p.news || "")}">${esc(p.news ? p.news.slice(0, 40) : "doubtful")}</span>` : ""}</td>
       <td class="l note">${esc(p.opp[0])}</td>${p.x.map((v) => `<td class="mono">${v.toFixed(1)}</td>`).join("")}<td></td></tr>`).join("")}
     </tbody></table></div>
-    <p class="note">Expected points: minutes, share of the club's expected goals and assists, clean-sheet chance, defensive contributions, bonus and saves from the last seven gameweeks (player data to gameweek ${X.data_to_gw}), against each opponent's expected goals from our model. A player flagged doubtful counts at his chance of playing; injured or suspended counts zero.</p></div>`;
+    <p class="note">Expected points: minutes, share of the club's expected goals and assists, clean-sheet chance, defensive contributions, bonus and saves from the last seven gameweeks (player data to gameweek ${X.data_to_gw}), against each opponent's expected goals from our model, then calibrated on this season's earlier gameweeks (the raw sum promised top players too much). A player flagged doubtful counts at his chance of playing; injured or suspended counts zero.</p></div>`;
 }
 
 async function analyse() {
