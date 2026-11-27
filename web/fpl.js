@@ -158,7 +158,11 @@ function render() {
   const mv = (m) => m.map(([o, i]) => `<b>${esc(o.name)}</b> → <b>${esc(i.name)}</b> <span class="note">(${esc(i.team)}, £${i.cost.toFixed(1)}m)</span>`).join("<br>");
   const twoHit = T.two ? T.two.gain - (free >= 2 ? 0 : 4) : null;
   const rec = (() => {
-    if (!T.one.length || T.one[0].gain < 0.5) return `Save your transfer: no move adds even half a point.`;
+    // Saving a free transfer is worth something (two next week allow a bigger change), so a small gain is
+    // not enough to spend one. At five saved transfers another one would be lost, so then any gain counts.
+    const g1 = T.one.length ? T.one[0].gain : 0;
+    if (free >= 5 && g1 > 0) return `Make the top single transfer: you already hold five free transfers, so saving one more would waste it (about <b>+${g1.toFixed(1)}</b> expected points).`;
+    if (!T.one.length || g1 < 1.5) return `Save your transfer for next week: the best move adds only ${g1 > 0 ? `+${g1.toFixed(1)}` : "nothing"}, and with ${Math.min(free + 1, 5)} free transfers next week you can make a bigger change.`;
     if (T.two && twoHit > T.one[0].gain + 0.5) return `Make two transfers${free >= 2 ? "" : " (−4 points)"}: about <b>+${twoHit.toFixed(1)}</b> expected points after the hit.`;
     return `Make the top single transfer: about <b>+${T.one[0].gain.toFixed(1)}</b> expected points.`;
   })();
