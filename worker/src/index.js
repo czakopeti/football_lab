@@ -69,10 +69,25 @@ async function fpl(env, id) {
   // Chips already played (name and gameweek), so the helper knows which ones are left.
   let chips = [];
   try { chips = ((await get(`https://fantasy.premierleague.com/api/entry/${id}/history/`, 60)).chips || []).map((c) => ({ name: c.name, gw: c.event })); } catch (e) { chips = null; }
+  // The picks are those of the last gameweek played; transfers already made for the coming one are
+  // applied on top (the public transfers list shows them before the deadline), with the bank moved by
+  // the sale and purchase prices.
+  let squad = picks.picks.map((p) => ({ id: p.element, pos: p.position, captain: p.is_captain, vice: p.is_vice_captain, selling: p.selling_price ? p.selling_price / 10 : null }));
+  let bank = (picks.entry_history.bank || 0) / 10, pending = [];
+  try {
+    const tr = await get(`https://fantasy.premierleague.com/api/entry/${id}/transfers/`, 30);
+    for (const t of tr.filter((t) => t.event > cur.id).sort((a, b) => String(a.time).localeCompare(String(b.time)))) {
+      const i = squad.findIndex((p) => p.id === t.element_out);
+      if (i < 0) continue;
+      squad[i] = { ...squad[i], id: t.element_in, selling: t.element_in_cost / 10, captain: false, vice: false };
+      bank += (t.element_out_cost - t.element_in_cost) / 10;
+      pending.push({ out: t.element_out, in: t.element_in });
+    }
+  } catch (e) { /* keep last gameweek's squad */ }
   return {
     players, next: next && next.id, gw: cur.id,
-    team: { name: entry.name, manager: `${entry.player_first_name} ${entry.player_last_name}`, bank: (picks.entry_history.bank || 0) / 10, value: (picks.entry_history.value || 0) / 10,
-      chip: picks.active_chip, chips, picks: picks.picks.map((p) => ({ id: p.element, pos: p.position, captain: p.is_captain, vice: p.is_vice_captain, selling: p.selling_price ? p.selling_price / 10 : null })) },
+    team: { name: entry.name, manager: `${entry.player_first_name} ${entry.player_last_name}`, bank: Math.round(bank * 10) / 10, value: (picks.entry_history.value || 0) / 10,
+      chip: picks.active_chip, chips, pending, picks: squad },
   };
 }
 

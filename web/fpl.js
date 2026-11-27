@@ -168,7 +168,7 @@ function render() {
   })();
   const bench = squad.filter((p) => !b.xi.includes(p)).sort((x, y) => (x.pos === "GKP") - (y.pos === "GKP") || y.x[0] - x.x[0]);
   app.innerHTML = head + `
-  <div class="panel"><b>${esc(F.team.name)}</b> <span class="note">· ${esc(F.team.manager)} · bank £${F.team.bank.toFixed(1)}m${F.team.chip ? ` · chip: ${esc(F.team.chip)}` : ""}</span>
+  <div class="panel"><b>${esc(F.team.name)}</b> <span class="note">· ${esc(F.team.manager)} · bank £${F.team.bank.toFixed(1)}m${F.team.chip ? ` · chip: ${esc(F.team.chip)}` : ""}${F.team.pending && F.team.pending.length ? ` · includes ${F.team.pending.length} transfer${F.team.pending.length > 1 ? "s" : ""} already made for gameweek ${X.gws[0]}` : ""}</span>
     <p style="margin:10px 0 4px">${rec}</p>
     <div class="tw"><table><thead><tr><th class="l">Best single transfers</th><th>Gain</th></tr></thead><tbody>
     ${T.one.map((t) => `<tr><td class="l">${mv(t.moves)}</td><td class="mono">+${t.gain.toFixed(1)}</td></tr>`).join("") || `<tr><td class="l" colspan="2">None that fit your budget.</td></tr>`}
