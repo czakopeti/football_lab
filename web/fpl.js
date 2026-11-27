@@ -32,7 +32,9 @@ function bestXI(squad, k) {
     const xi = [by.GKP[0], ...by.DEF.slice(0, d), ...by.MID.slice(0, m), ...by.FWD.slice(0, f)];
     const cap = xi.reduce((a, b) => (b.x[k] > a.x[k] ? b : a));
     const tot = xi.reduce((a, b) => a + b.x[k], 0) + cap.x[k];
-    if (!best || tot > best.tot) best = { tot, xi, cap, form: `${d}-${m}-${f}` };
+    // Vice-captain: the next best in the eleven (he gets the armband if the captain does not play).
+    const vice = xi.filter((p) => p !== cap).reduce((a, b) => (b.x[k] > a.x[k] ? b : a));
+    if (!best || tot > best.tot) best = { tot, xi, cap, vice, form: `${d}-${m}-${f}` };
   }
   return best;
 }
@@ -176,9 +178,9 @@ function render() {
     </tbody></table></div>
     <p class="note">Gain: extra expected points from your best line-up, this gameweek plus 0.6 × each of the next two. Prices are current FPL prices; your selling price can be a little lower.</p></div>
   ${chipPanel(squad, live)}
-  <div class="panel"><b>Line-up for gameweek ${X.gws[0]}</b> <span class="note">· ${b.form} · about ${b.tot.toFixed(1)} points with the captain</span>
+  <div class="panel"><b>Line-up for gameweek ${X.gws[0]}</b> <span class="note">· ${b.form} · about ${b.tot.toFixed(1)} points with the captain · captain ${esc(b.cap.name)}, vice-captain ${esc(b.vice.name)}</span>
     <div class="tw"><table><thead><tr><th class="l">Player</th><th class="l">Next</th>${X.gws.slice(0, 3).map((g) => `<th>GW${g}</th>`).join("")}<th></th></tr></thead><tbody>
-    ${[...b.xi, ...bench].map((p, i) => `<tr${i === 11 ? ' style="border-top:2px solid var(--line)"' : ""}><td class="l"><b>${esc(p.name)}</b> <span class="note">${esc(p.pos)} · ${esc(p.team)}</span>${p === b.cap ? ' <span class="pill ok">C</span>' : ""}${i >= 11 ? ' <span class="pill">bench</span>' : ""}${p.status && p.status !== "a" ? ` <span class="pill no" title="${esc(p.news || "")}">${esc(p.news ? p.news.slice(0, 40) : "doubtful")}</span>` : ""}</td>
+    ${[...b.xi, ...bench].map((p, i) => `<tr${i === 11 ? ' style="border-top:2px solid var(--line)"' : ""}><td class="l"><b>${esc(p.name)}</b> <span class="note">${esc(p.pos)} · ${esc(p.team)}</span>${p === b.cap ? ' <span class="pill ok">C</span>' : ""}${p === b.vice ? ' <span class="pill">V</span>' : ""}${i >= 11 ? ' <span class="pill">bench</span>' : ""}${p.status && p.status !== "a" ? ` <span class="pill no" title="${esc(p.news || "")}">${esc(p.news ? p.news.slice(0, 40) : "doubtful")}</span>` : ""}</td>
       <td class="l note">${esc(p.opp[0])}</td>${p.x.slice(0, 3).map((v) => `<td class="mono">${v.toFixed(1)}</td>`).join("")}<td></td></tr>`).join("")}
     </tbody></table></div>
     <p class="note">Expected points: minutes, share of the club's expected goals and assists, clean-sheet chance, defensive contributions, bonus and saves from the last seven gameweeks (player data to gameweek ${X.data_to_gw}), against each opponent's expected goals from our model, then calibrated on this season's earlier gameweeks (the raw sum promised top players too much). A player flagged doubtful counts at his chance of playing; injured or suspended counts zero.</p></div>`;
